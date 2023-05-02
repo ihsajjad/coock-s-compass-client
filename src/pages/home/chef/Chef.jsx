@@ -22,7 +22,7 @@ const Chef = ({ chef }) => {
             <hr className='border border-slate-300 mb-3'/>
             <div className='flex items-center justify-between'>
                 <div>Likes: {likes}</div>
-                <Link to=''>View Recipes</Link>
+                <Link to='' className='bg-yellow-400 py-2 px-4 rounded-lg font-bold border-2 border-slate-600'>View Recipes</Link>
             </div>
         </div>
     );

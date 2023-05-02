@@ -15,7 +15,7 @@ const Home = () => {
                 </div>
             </header>
             <section className='lg:px-20 px-4 py-10'>
-                <h3 className='text-3xl text-center font-bold mb-8'>Our Chefs</h3>
+                <h3 className='text-3xl text-center font-bold mb-8 '>Our Chefs</h3>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
                     {
                         chefs.map(chef => <Chef 
