@@ -12,7 +12,8 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />
+                element: <Home />,
+                loader: ()=> fetch('https://cook-s-compass-server-ihsajjad.vercel.app/chefs')
             },
             {
                 path: '/blog',

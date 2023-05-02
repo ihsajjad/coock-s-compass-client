@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-base-100 lg:px-20">
                 <div className="flex-1">
                     <a className="btn btn-ghost normal-case text-xl">Cook's Compass</a>
                 </div>
