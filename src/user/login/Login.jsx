@@ -26,17 +26,7 @@ const Login = () => {
                     <div className="form-control mt-6">
                         <button className="btn btn-primary">Login</button>
                     </div>
-                    <p>New at Cook's Compass? Please <Link to='/register' class="link link-primary">Register</Link></p>
-                </div>
-                <div className='text-center'>
-                    <h3>Login with</h3>
-                    <hr className='border border-slate-300 my-3 w-3/4 mx-auto' />
-                    <div className='flex items-center justify-center gap-5 mb-4'>
-                        <div className="btn btn-primary">
-                            <FaGoogle className='text-2xl mr-3'/><span> Google</span>
-                        </div>
-                        <div className="btn btn-primary"><FaGithub  className='text-2xl mr-3'/><span>Github</span></div>
-                    </div>
+                    <p>New at Cook's Compass? Please <Link to='/register' className="link link-primary">Register</Link></p>
                 </div>
             </form>
         </div>
