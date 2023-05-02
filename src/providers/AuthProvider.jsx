@@ -1,5 +1,5 @@
-import React, { createContext } from 'react';
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 const auth = getAuth(app)
@@ -7,6 +7,8 @@ const auth = getAuth(app)
 export const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     // Google Login functionality
     const googleProvider = new GoogleAuthProvider();
@@ -34,13 +36,36 @@ const AuthProvider = ({children}) => {
     const setNameAndPhoto = (nameAndPhoto) => {
         return updateProfile(auth.currentUser, nameAndPhoto);
     }
-    const authInfo = {
 
+    // change password
+    const passwordReset = (email) => {
+        return sendPasswordResetEmail(auth, email)
+    }
+
+    // Observing user 
+    useEffect(()=>{
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        })
+
+        return ()=> { unsubscribe()}
+    },[])
+
+    // Log Out
+    const logOut = () => {
+        return signOut(auth)
+    }
+    
+    const authInfo = {
+        user,
+        loading,
         googleSignIn,
         gitHubSignIn,
         createUser,
         loginUser,
-        setNameAndPhoto
+        setNameAndPhoto,
+        passwordReset,
+        logOut
     }
     return (
         <AuthContext.Provider value={authInfo}>

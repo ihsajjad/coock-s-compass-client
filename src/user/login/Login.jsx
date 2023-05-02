@@ -6,7 +6,8 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState('')
-    const {loginUser, googleSignIn, gitHubSignIn,} = useContext(AuthContext);
+    const {loginUser, googleSignIn, gitHubSignIn, passwordReset} = useContext(AuthContext);
+    const [email, setEmail] = useState('');
 
 
     // Login with email and password functionality
@@ -16,7 +17,7 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-
+        setEmail(email)
         form.reset();
 
         if(password.length < 6){
@@ -56,6 +57,13 @@ const Login = () => {
             console.log(error.message);
         })
     }
+
+    const handlePasswordReset = ()=>{
+        passwordReset(email)
+        .then()
+        .catch(error => setError(error.message))
+    }
+    console.log(email)
     return (
         <div className="min-h-screen bg-base-200 w-full py-12 px-3">
             <form onSubmit={handleSignIn} className="rounded-lg p-5 lg:w-1/3 w-full mx-auto shadow-2xl bg-base-100 my-10">
@@ -74,7 +82,7 @@ const Login = () => {
                         <input type="password" name='password' placeholder="Password" className="input input-bordered" />
                         <p className='text-red-500'>{error}</p>
                         <label className="label">
-                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            <a onClick={handlePasswordReset} href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>
                     </div>
                     <div className="form-control mt-6">
