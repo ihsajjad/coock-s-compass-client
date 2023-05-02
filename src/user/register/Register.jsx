@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Register = () => {
-    const {googleSignIn, gitHubSignIn} = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const {googleSignIn, gitHubSignIn, createUser} = useContext(AuthContext);
 
 
-    // Google login system
+    // Google login functionality
     const handleGoogleLogin = () => {
         googleSignIn()
         .then(result => {
@@ -32,10 +33,45 @@ const Register = () => {
         })
     }
 
-    
+    const handleCreateUser = (event) => {
+        event.preventDefault();
+        setError('')
+        const form = event.target;
+        const name = form.name.value;
+        const photo = form.photo.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const confirm = form.confirm.value;
+
+        // Password validation
+        if(password !== confirm){
+            return setError("Password doesn't matched");
+        } else if(!/^(?=.*[0-9])/.test(password)){
+            return setError('Password should have minimum one Number');
+        } else if(!/(?=.*[A-Z])/.test(password)){
+            return setError("Password should have minimum one Capital letter");
+        }
+        /* else if(!/(?=.*[!@#$%^&*])/.test(password)){
+            return setError("Password should have minimum one Special Character");
+        } */
+
+        createUser(email, password)
+        .then(result => {
+            const createdUser = result.user;
+            createdUser.displayName = name;
+            createdUser.photoURL = photo;
+            
+            console.log(createdUser);
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+    }
+
+
     return (
         <div className="min-h-screen bg-base-200 w-full py-12 px-3">
-            <form className="rounded-lg p-5 lg:w-1/3 w-full mx-auto shadow-2xl bg-base-100 my-10">
+            <form onSubmit={handleCreateUser} className="rounded-lg p-5 lg:w-1/3 w-full mx-auto shadow-2xl bg-base-100 my-10">
                 <h2 className='text-2xl font-bold text-center my-5'>Please Register</h2>
                 <div className="card-body">
                     <div className="form-control">
@@ -54,13 +90,13 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="text" name='email' placeholder="Your Email" className="input input-bordered" />
+                        <input type="email" name='email' placeholder="Your Email" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="text" name='password' placeholder="Your Password" className="input input-bordered" />
+                        <input type="password" name='password' placeholder="Your Password" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -68,7 +104,7 @@ const Register = () => {
                         </label>
                         <input type="password" name='confirm' placeholder="Confirm Password" className="input input-bordered" />
                         <label className="label">
-                            <p>error</p>
+                            <p className='text-red-500'>{error}</p>
                         </label>
                     </div>
                     <div className="form-control">
