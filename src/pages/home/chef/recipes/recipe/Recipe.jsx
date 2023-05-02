@@ -8,10 +8,10 @@ const Recipe = ({ recipe }) => {
         <div className='border-2 border-slate-300 rounded-lg p-5 relative'>
             <img className='rounded-t-lg mx-auto my-4' src={image} alt="" />
             <div className='my-4'>
-                <h3 className='text-2xl font-semibold'>{name}</h3>
+                <h3 className='text-3xl font-semibold'>{name}</h3>
                 <div>
-                    <h4 className='text-2xl pb-1 mb-2 border-b-2 border-slate-500 inline-block'>Ingredients : </h4>
-                    <ol className='list-decimal pl-6'>
+                    <h4 className='text-xl pb-1 mb-2 border-b-2 border-slate-500 inline-block'>Ingredients : </h4>
+                    <ol className='list-decimal pl-6 mt-3'>
                         {
                             ingredients.map((ingredient, i) => <li key={i}>{ingredient}</li>)
                         }

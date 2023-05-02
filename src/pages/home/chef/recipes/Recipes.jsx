@@ -16,6 +16,7 @@ const Recipes = () => {
                 <p><span className='font-bold'>Likes:</span> {likes}</p>
                 <p><span className='font-bold'>Recipes:</span> {num_recipes}</p>
             </div>
+            <h2 className='text-3xl font-bold text-center mt-4'>{chef_name}'s Popular Recipes</h2>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 my-10'>
                 {
                     recipes.map(recipe => <Recipe key={recipe.id}
