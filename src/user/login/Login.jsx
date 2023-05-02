@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Login = () => {
     const [error, setError] = useState('')
-    const {loginUser} = useContext(AuthContext);
+    const {loginUser, googleSignIn, gitHubSignIn,} = useContext(AuthContext);
 
 
     // Login with email and password functionality
@@ -18,6 +19,10 @@ const Login = () => {
 
         form.reset();
 
+        if(password.length < 6){
+            return setError('password should have minimum 6 Characters')
+        }
+
         loginUser(email, password)
         .then(result => {
             const loggedUser = result.user;
@@ -25,6 +30,30 @@ const Login = () => {
         })
         .catch(error => {
             setError(error.message);
+        })
+    }
+
+    // Google login functionality
+    const handleGoogleLogin = () => {
+        googleSignIn()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+        .catch(error=> {
+            console.log(error.message);
+        })
+    }
+
+    // GitHub login functionality 
+    const handleGitHubLogin = () => {
+        gitHubSignIn()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+        .catch(error => {
+            console.log(error.message);
         })
     }
     return (
@@ -52,6 +81,16 @@ const Login = () => {
                         <button className="btn btn-primary">Login</button>
                     </div>
                     <p>New at Cook's Compass? Please <Link to='/register' className="link link-primary">Register</Link></p>
+                </div>
+                <div className='text-center'>
+                    <h3>Login with</h3>
+                    <hr className='border border-slate-300 my-3 w-3/4 mx-auto' />
+                    <div className='flex items-center justify-center gap-5 mb-4'>
+                        <div onClick={handleGoogleLogin} className="btn btn-primary">
+                            <FaGoogle className='text-2xl mr-3'/><span> Google</span>
+                        </div>
+                        <div onClick={handleGitHubLogin} className="btn btn-primary"><FaGithub  className='text-2xl mr-3'/><span>Github</span></div>
+                    </div>
                 </div>
             </form>
         </div>

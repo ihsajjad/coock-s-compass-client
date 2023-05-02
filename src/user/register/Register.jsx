@@ -1,37 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Register = () => {
     const [error, setError] = useState('');
-    const {googleSignIn, gitHubSignIn, createUser} = useContext(AuthContext);
+    const { createUser, setNameAndPhoto} = useContext(AuthContext);
 
 
-    // Google login functionality
-    const handleGoogleLogin = () => {
-        googleSignIn()
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-        })
-        .catch(error=> {
-            console.log(error.message);
-        })
-    }
-
-    // GitHub login functionality 
-    const handleGitHubLogin = () => {
-        gitHubSignIn()
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-        })
-        .catch(error => {
-            console.log(error.message);
-        })
-    }
 
     const handleCreateUser = (event) => {
         event.preventDefault();
@@ -48,11 +24,14 @@ const Register = () => {
         // Password validation
         if(password !== confirm){
             return setError("Password doesn't matched");
+        } else if(password.length < 6){
+            return setError('password should have minimum 6 Characters');
         } else if(!/^(?=.*[0-9])/.test(password)){
             return setError('Password should have minimum one Number');
         } else if(!/(?=.*[A-Z])/.test(password)){
             return setError("Password should have minimum one Capital letter");
         }
+
         /* else if(!/(?=.*[!@#$%^&*])/.test(password)){
             return setError("Password should have minimum one Special Character");
         } */
@@ -63,6 +42,14 @@ const Register = () => {
             createdUser.displayName = name;
             createdUser.photoURL = photo;
             
+            const nameAndPhoto = {
+                displayName : name,
+                photoURL : photo
+            }
+
+            setNameAndPhoto(nameAndPhoto)
+            .then(result => {})
+            .catch(error => console.log(error.message))
             console.log(createdUser);
         })
         .catch(error => {
@@ -92,19 +79,19 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email" name='email' placeholder="Your Email" className="input input-bordered" />
+                        <input type="email" name='email' placeholder="Your Email" className="input input-bordered" required/>
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" name='password' placeholder="Your Password" className="input input-bordered" />
+                        <input type="password" name='password' placeholder="Your Password" className="input input-bordered" required/>
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Confirm Password</span>
                         </label>
-                        <input type="password" name='confirm' placeholder="Confirm Password" className="input input-bordered" />
+                        <input type="password" name='confirm' placeholder="Confirm Password" className="input input-bordered" required />
                         <label className="label">
                             <p className='text-red-500'>{error}</p>
                         </label>
@@ -113,16 +100,6 @@ const Register = () => {
                         <button className="btn btn-primary">Register</button>
                     </div>
                     <p>Already have an Account? Please <Link to='/login' className="link link-primary">Login</Link></p>
-                </div>
-                <div className='text-center'>
-                    <h3>Login with</h3>
-                    <hr className='border border-slate-300 my-3 w-3/4 mx-auto' />
-                    <div className='flex items-center justify-center gap-5 mb-4'>
-                        <div onClick={handleGoogleLogin} className="btn btn-primary">
-                            <FaGoogle className='text-2xl mr-3'/><span> Google</span>
-                        </div>
-                        <div onClick={handleGitHubLogin} className="btn btn-primary"><FaGithub  className='text-2xl mr-3'/><span>Github</span></div>
-                    </div>
                 </div>
             </form>
         </div>
