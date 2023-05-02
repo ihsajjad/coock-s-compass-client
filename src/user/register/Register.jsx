@@ -43,6 +43,8 @@ const Register = () => {
         const password = form.password.value;
         const confirm = form.confirm.value;
 
+        form.reset();
+
         // Password validation
         if(password !== confirm){
             return setError("Password doesn't matched");
