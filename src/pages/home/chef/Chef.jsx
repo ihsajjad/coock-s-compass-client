@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Chef = ({ chef }) => {
-    const { chef_name, chef_picture, likes, years_of_experience, num_recipes } = chef;
-    console.log(chef)
+    const { chef_name, chef_picture, likes, years_of_experience, num_recipes, id } = chef;
 
     /*  Chef Picture
  Chef Name
@@ -22,7 +21,7 @@ const Chef = ({ chef }) => {
             <hr className='border border-slate-300 mb-3'/>
             <div className='flex items-center justify-between'>
                 <div>Likes: {likes}</div>
-                <Link to='' className='bg-yellow-400 py-2 px-4 rounded-lg font-bold border-2 border-slate-600'>View Recipes</Link>
+                <Link to={`/chefs/${id}`} className='bg-yellow-400 py-2 px-4 rounded-lg font-bold border-2 border-slate-600' chef={chef}>View Recipes</Link>
             </div>
         </div>
     );
