@@ -5,17 +5,34 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Register = () => {
-    const {googleSignIn} = useContext(AuthContext);
+    const {googleSignIn, gitHubSignIn} = useContext(AuthContext);
 
+
+    // Google login system
     const handleGoogleLogin = () => {
         googleSignIn()
         .then(result => {
-            console.log(result);
+            const loggedUser = result.user;
+            console.log(loggedUser);
         })
         .catch(error=> {
             console.log(error.message);
         })
     }
+
+    // GitHub login functionality 
+    const handleGitHubLogin = () => {
+        gitHubSignIn()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
+    }
+
+    
     return (
         <div className="min-h-screen bg-base-200 w-full py-12 px-3">
             <form className="rounded-lg p-5 lg:w-1/3 w-full mx-auto shadow-2xl bg-base-100 my-10">
@@ -66,7 +83,7 @@ const Register = () => {
                         <div onClick={handleGoogleLogin} className="btn btn-primary">
                             <FaGoogle className='text-2xl mr-3'/><span> Google</span>
                         </div>
-                        <div className="btn btn-primary"><FaGithub  className='text-2xl mr-3'/><span>Github</span></div>
+                        <div onClick={handleGitHubLogin} className="btn btn-primary"><FaGithub  className='text-2xl mr-3'/><span>Github</span></div>
                     </div>
                 </div>
             </form>
