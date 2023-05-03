@@ -11,7 +11,7 @@ const Recipes = () => {
     }
     
     return (
-        <div className='lg:px-20 px-4 py-10'>
+        <div className='lg:px-20 px-4 py-10 bg-amber-50'>
             <div className='w-2/3 mx-auto space-y-3 text-center'>
                 <h3 className='text-3xl font-semibold my-5'>{chef_name}</h3>
                 <img className='w-full mx-auto' src={chef_picture} alt="" />

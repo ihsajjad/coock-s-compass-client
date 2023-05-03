@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { ToastContext } from '../../../../../providers/toast/ToastProvider';
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const Recipe = ({ recipe }) => {
     const [isDisabled, setIsDisabled] = useState(false);
@@ -15,8 +17,8 @@ const Recipe = ({ recipe }) => {
     
     return (
         /* style={{ height: '336px', width: '336px' }} */
-        <div className='border-2 border-slate-300 rounded-lg p-5 relative'>
-            <img className='rounded-t-lg mx-auto my-4' src={image} alt="" />
+        <div className='border-2 border-amber-300 rounded-lg p-5 relative shadow-xl'>
+            <img className='rounded-t-lg mx-auto lg:h-96 ' src={image} alt="" />
             <div className='my-4'>
                 <h3 className='text-3xl font-semibold'>{name}</h3>
                 <div>
@@ -30,10 +32,10 @@ const Recipe = ({ recipe }) => {
                 <p className='mb-16 mt-4'><span className='font-bold'>Method: </span> {cookingMethod}</p>
             </div>
             <div className='w-full absolute px-8 py-4 bottom-0 right-0'>
-                <hr className='border border-slate-300 mb-3' />
+                <hr className='border border-amber-300 mb-3' />
                 <div className='flex items-center justify-between w-full'>
-                    <div>Ratings: {rating}</div>
-                    <button onClick={handleAddToFavorite} className='btn btn-primary' 
+                    <div className='flex items-center justify-center'><Rating style={{ maxWidth: '150px' }} value={rating} readOnly/> <span className='text-xl'>{rating}</span></div>
+                    <button onClick={handleAddToFavorite} className='custom-btn' 
                     disabled={isDisabled}
                     >Add to Favorite</button>
                 </div>
