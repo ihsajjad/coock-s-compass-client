@@ -2,12 +2,15 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
+import { ToastContext } from '../../providers/toast/ToastProvider';
+
 
 
 const Login = () => {
     const [error, setError] = useState('')
-    const {loginUser, googleSignIn, gitHubSignIn, passwordReset} = useContext(AuthContext);
     const [email, setEmail] = useState('');
+    const {loginUser, googleSignIn, gitHubSignIn, passwordReset} = useContext(AuthContext);
+    const handleToast = useContext(ToastContext);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -33,6 +36,7 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             navigate(from, {replace: true})
+            handleToast(`Welcome ${loggedUser.displayName === null && ''}`, 'You have signed in successfully.', 'success')
         })
         .catch(error => {
             setError(error.message);
@@ -44,7 +48,9 @@ const Login = () => {
         googleSignIn()
         .then(result => {
             const loggedUser = result.user;
+            console.log(loggedUser.displayName)
             navigate(from, {replace: true})
+            handleToast(`Welcome ${loggedUser.displayName}`, 'You have successfully signed in with Google.', 'success')
         })
         .catch(error=> {
             console.log(error.message);
@@ -58,6 +64,7 @@ const Login = () => {
             const loggedUser = result.user;
             console.log(loggedUser);
             navigate(from, {replace: true})
+            handleToast(`Welcome ${loggedUser.displayName}`, 'You have successfully signed in with GitHub.', 'success')
         })
         .catch(error => {
             console.log(error.message);
@@ -70,6 +77,8 @@ const Login = () => {
         .then()
         .catch(error => setError(error.message))
     }
+
+    
     
     return (
         <div className="min-h-screen bg-base-200 w-full py-12 px-3">

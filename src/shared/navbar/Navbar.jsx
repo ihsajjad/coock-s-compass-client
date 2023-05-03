@@ -4,7 +4,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    
+
 
     const handleLogOut = () => {
         logOut()
@@ -18,24 +18,25 @@ const Navbar = () => {
                     <a className="btn btn-ghost normal-case text-xl">Cook's Compass</a>
                 </div>
                 <div className="flex-none">
-                    <ul className="menu menu-horizontal px-1 space-x-2">
-                        <li><Link to='/'>Home</Link ></li>
-                        <li><Link to='/blog'>Blog</Link></li>
+                    <ul className="flex items-center justify-center space-x-5">
+                        <Link to='/'>Home</Link >
+                        <Link to='/blog'>Blog</Link>
                         {
 
                             user
-                                ? <li>
-                                    <button onClick={handleLogOut}>Log Out</button>
-                                    <div className="tooltip tooltip-bottom" data-tip={`${user?.displayName}`}>
+                                ? 
+                                    <><button onClick={handleLogOut}>Log Out</button>
+                                    <div className="tooltip tooltip-bottom" data-tip={`${user?.displayName || 'Profile'}`}>
                                         <img className="w-10 h-10"
-                                            style={{ padding: '0', borderRadius: '50%' }} src={`${user.photoURL ? user.photoURL : 'https://i.postimg.cc/d1bNpF8n/user-solid.png'}`}
+                                            style={{ padding: '0', borderRadius: '50%' }} src={`${user.photoURL || 'https://i.postimg.cc/d1bNpF8n/user-solid.png'}`}
                                             />
-                                    </div>
-                                </li>
-                                : <li>
+                                    </div></>
+
+                                : <>
                                     <Link to='/login'>Login</Link>
                                     <Link to='/register'>Register</Link>
-                                </li>
+                                  </>
+
                         }
                     </ul>
                 </div>

@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
+import { FaHourglassEnd } from 'react-icons/fa';
 
 const auth = getAuth(app)
 
@@ -13,26 +14,26 @@ const AuthProvider = ({children}) => {
     // Google Login functionality
     const googleProvider = new GoogleAuthProvider();
     const googleSignIn = () =>{
-        setLoading(false);
+        setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
 
     // GitHub Login functionality
     const gitHubProvider = new GithubAuthProvider();
     const gitHubSignIn = () => {
-        setLoading(false);
+        setLoading(true);
         return signInWithPopup(auth, gitHubProvider);
     }
 
     // Creating User with email and password
     const createUser = (email, password) => {
-        setLoading(false);
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     // Login with email and password
     const loginUser = (email, password) => {
-        setLoading(false);
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 

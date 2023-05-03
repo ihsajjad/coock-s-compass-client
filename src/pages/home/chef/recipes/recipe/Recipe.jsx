@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { ToastContext } from '../../../../../providers/toast/ToastProvider';
 
 const Recipe = ({ recipe }) => {
+    const [isDisabled, setIsDisabled] = useState(false);
     const { id, name, image, ingredients, cookingMethod, rating } = recipe;
+    const handleToast = useContext(ToastContext);
 
+    const handleAddToFavorite = () => {
+
+        handleToast('Successfully Added' , 'This recipe is added to your favorite list', 'success')
+        setIsDisabled(true)
+    }
+
+    console.log(isDisabled)
     return (
         /* style={{ height: '336px', width: '336px' }} */
         <div className='border-2 border-slate-300 rounded-lg p-5 relative'>
@@ -23,7 +33,9 @@ const Recipe = ({ recipe }) => {
                 <hr className='border border-slate-300 mb-3' />
                 <div className='flex items-center justify-between w-full'>
                     <div>Ratings: {rating}</div>
-                    <button>Add to Favorite</button>
+                    <button onClick={handleAddToFavorite} className='btn btn-primary' 
+                    disabled={isDisabled}
+                    >Add to Favorite</button>
                 </div>
             </div>
         </div>

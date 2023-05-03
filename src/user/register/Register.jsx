@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import { ToastContext } from '../../providers/toast/ToastProvider';
 
 
 const Register = () => {
     const [error, setError] = useState('');
     const { createUser, setNameAndPhoto} = useContext(AuthContext);
-
+    const handleToast = useContext(ToastContext);
 
 
     const handleCreateUser = (event) => {
@@ -42,6 +43,8 @@ const Register = () => {
             createdUser.displayName = name;
             createdUser.photoURL = photo;
             
+            handleToast(`Congratulation ${name}`, 'You have registered successfully.', 'success')
+
             const nameAndPhoto = {
                 displayName : name,
                 photoURL : photo
