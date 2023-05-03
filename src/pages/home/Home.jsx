@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Chef from './chef/Chef';
+import { FaStar } from 'react-icons/fa';
 
 const Home = () => {
     const chefs = useLoaderData();
@@ -14,6 +15,8 @@ const Home = () => {
                     From traditional to modern fusion, let our expert chef tantalize your taste buds. Cook's Compass</p>
                 </div>
             </header>
+
+            {/* Our Chefs section */}
             <section className='lg:px-20 px-4 py-10'>
                 <h3 className='text-3xl text-center font-bold mb-8 '>Our Chefs</h3>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
@@ -23,6 +26,48 @@ const Home = () => {
                         chef={chef}
                         ></Chef>)
                     }
+                </div>
+            </section>
+
+            <section className='lg:px-20 px-4 py-10'>
+                <h3 className='text-3xl font-bold text-center'>Clint's feedback to Coock's Compass</h3>
+                <div className='my-6 px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 relative'>
+                    <div className='flex flex-col items-center border-2 border-slate-600 rounded-lg p-5 space-y-3'>
+                        <img className='w-40 h-40 rounded-full border-2 border-gray-500' src="https://ln.run/_w2YA" alt="" />
+                        <h3 className='text-2xl font-semibold'>Hero Alom</h3>
+                        <p className='text-slate-500'>The chefs at our restaurant have been using this supplier for years, and we have yet to be disappointed. Their products are high quality, and their prices are competitive.</p>
+                        <div className='flex gap-1 text-yellow-600 absolute bottom-5'>
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                        </div>
+                    </div>
+                    <div className='flex flex-col items-center border-2 border-slate-600 rounded-lg p-5 space-y-3 relative'>
+                        <img className='w-40 h-40 rounded-full border-2 border-gray-500' src="https://ln.run/-s3_X" alt="" />
+                        <h3 className='text-2xl font-semibold'>Ranu Mondal</h3>
+                        <p className='text-slate-500'>I can't say enough good things about this chef supplier. From the moment I placed my first order, I knew I was dealing with a company that cares about quality and customer satisfaction. I'm a customer for life!</p>
+                        <div className='flex gap-1 text-yellow-600 absolute bottom-5'>
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                        </div>
+                    </div>
+                    <div className='flex flex-col items-center border-2 border-slate-600 rounded-lg p-5 space-y-3 relative'>
+                        <img className='w-40 h-40 rounded-full border-2 border-gray-500' src="https://ln.run/tasgN" alt="" />
+                        <h3 className='text-2xl font-semibold'>Sokina Dhar</h3>
+                        <p className='text-slate-500'>I just wanted to take a moment to thank you for your amazing service. The quality of your ingredients is exceptional, and your team is always so friendly and helpful. Keep up the great work!</p>
+                        <div className='flex gap-1 text-yellow-600 absolute bottom-5'>
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>

@@ -27,7 +27,7 @@ const Recipe = ({ recipe }) => {
                         }
                     </ol>
                 </div>
-                <p className='mb-12 mt-4'><span className='font-bold'>Method: </span> {cookingMethod}</p>
+                <p className='mb-16 mt-4'><span className='font-bold'>Method: </span> {cookingMethod}</p>
             </div>
             <div className='w-full absolute px-8 py-4 bottom-0 right-0'>
                 <hr className='border border-slate-300 mb-3' />
