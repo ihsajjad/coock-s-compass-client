@@ -4,7 +4,7 @@ import Recipe from './recipe/recipe';
 
 const Recipes = () => {
     const chef = useLoaderData();
-    console.log(chef);
+    
     const { id, chef_picture, chef_name, description, likes, num_recipes, recipes, years_of_experience } = chef;
     return (
         <div className='lg:px-20 px-4 py-10'>

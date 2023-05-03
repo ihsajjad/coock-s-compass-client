@@ -4,12 +4,7 @@ import { Link } from 'react-router-dom';
 const Chef = ({ chef }) => {
     const { chef_name, chef_picture, likes, years_of_experience, num_recipes, id } = chef;
 
-    /*  Chef Picture
- Chef Name
- Years of experience
- Numbers of recipes
-     Likes
- View Recipes Button */
+    
     return (
         <div className='border-2 border-slate-300 rounded-lg p-5'>
             <img className='rounded-t-lg mx-auto' src={chef_picture} style={{ height: '336px', width: '336px' }} alt="" />

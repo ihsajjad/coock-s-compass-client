@@ -5,6 +5,7 @@ import Blog from "../pages/blog/Blog";
 import Recipes from "../pages/home/chef/recipes/Recipes";
 import Login from "../user/login/Login";
 import Register from "../user/register/Register";
+import PrivetRoute from "./privetRoute/PrivetRoute";
 
 
 
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/chefs/:id',
-                element: <Recipes />,
+                element: <PrivetRoute><Recipes /></PrivetRoute>,
                 loader: ({params})=> fetch(`https://cook-s-compass-server-ihsajjad.vercel.app/chefs/${params.id}`)
             },
             {

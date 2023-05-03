@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
 
@@ -9,6 +9,11 @@ const Login = () => {
     const {loginUser, googleSignIn, gitHubSignIn, passwordReset} = useContext(AuthContext);
     const [email, setEmail] = useState('');
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname;
+
+    console.log(from)
 
     // Login with email and password functionality
     const handleSignIn = (event) => {
@@ -27,7 +32,7 @@ const Login = () => {
         loginUser(email, password)
         .then(result => {
             const loggedUser = result.user;
-            console.log(loggedUser)
+            navigate(from, {replace: true})
         })
         .catch(error => {
             setError(error.message);
@@ -39,7 +44,7 @@ const Login = () => {
         googleSignIn()
         .then(result => {
             const loggedUser = result.user;
-            console.log(loggedUser);
+            navigate(from, {replace: true})
         })
         .catch(error=> {
             console.log(error.message);
@@ -52,18 +57,20 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            navigate(from, {replace: true})
         })
         .catch(error => {
             console.log(error.message);
         })
     }
 
+    // Password reset system
     const handlePasswordReset = ()=>{
         passwordReset(email)
         .then()
         .catch(error => setError(error.message))
     }
-    console.log(email)
+    
     return (
         <div className="min-h-screen bg-base-200 w-full py-12 px-3">
             <form onSubmit={handleSignIn} className="rounded-lg p-5 lg:w-1/3 w-full mx-auto shadow-2xl bg-base-100 my-10">
