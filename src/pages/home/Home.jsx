@@ -9,7 +9,7 @@ const Home = () => {
 
     let products = [];
 
-    for(const chef of chefs){
+    for (const chef of chefs) {
         // console.log(chef.recipes)
         const ps = chef.recipes;
         ps.forEach(p => products.push(p))
@@ -19,11 +19,24 @@ const Home = () => {
     return (
         <main>
             <header className='relative flex items-center justify-center'>
-                <img className='h-screen w-screen z-0' src="https://images.unsplash.com/photo-1581949882446-58884cf7ef88?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=921&q=80" alt="" />
+                {/* <img className='h-screen w-screen z-0' src="https://images.unsplash.com/photo-1581949882446-58884cf7ef88?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=921&q=80" alt="" />
                 <div className='absolute top-20 text-white text-center'>
                     <h1 className='text-5xl font-bold mb-3'>Cook's Compass</h1> 
                     <p className='text-slate-200'>Embark on a culinary journey to Korea. <br/>
                     From traditional to modern fusion, let our expert chef tantalize your taste buds. Cook's Compass</p>
+                </div> */}
+                <div className="hero min-h-screen" style={{ backgroundImage: `url("https://ln.run/zUU6e")` }}>
+                    <div className="hero-overlay bg-opacity-30"></div>
+                    <div className="hero-content text-center text-neutral-content">
+                        <div className="max-w-md">
+                            <h1 className="mb-5 text-5xl font-bold">Cook's Compass</h1>
+                            <p className="mb-5 text-slate-200"> Discover the authentic flavors of Korea with our premium ingredients. From spicy sauces to savory seasonings, we have everything you need to elevate your Korean dishes.</p>
+                            <div>
+                                <input type="text" placeholder="Search here" className="input input-bordered input-primary w-full max-w-xs" />
+                                <button className="btn btn-primary -ml-20">Search</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </header>
 
@@ -32,23 +45,23 @@ const Home = () => {
                 <h3 className='text-3xl text-center font-bold mb-8 '>Our Chefs</h3>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
                     {
-                        chefs.map(chef => <Chef 
-                        key={chef.id}
-                        chef={chef}
+                        chefs.map(chef => <Chef
+                            key={chef.id}
+                            chef={chef}
                         ></Chef>)
                     }
                 </div>
             </section>
 
             <hr className='border border-slate-300 w-full' />
-                    
+
             {/* Order Now */}
             <section className='lg:px-20 px-4 py-10'>
                 <h3 className='text-3xl font-bold text-center'>Order Now</h3>
                 <div className='grid grid-cols-1 lg:grid-cols-4 gap-6 my-10'>
                     {
-                        products.slice(0,4).map(product => <Product product={product}
-                        key={product.id}></Product>)
+                        products.slice(0, 4).map(product => <Product product={product}
+                            key={product.id}></Product>)
                     }
                 </div>
             </section>
