@@ -4,8 +4,12 @@ import Recipe from './recipe/recipe';
 
 const Recipes = () => {
     const chef = useLoaderData();
-    
     const { id, chef_picture, chef_name, description, likes, num_recipes, recipes, years_of_experience } = chef;
+
+    if(!chef){
+        return <Spinner />
+    }
+    
     return (
         <div className='lg:px-20 px-4 py-10'>
             <div className='w-2/3 mx-auto space-y-3 text-center'>

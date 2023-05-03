@@ -12,7 +12,7 @@ const Recipe = ({ recipe }) => {
         setIsDisabled(true)
     }
 
-    console.log(isDisabled)
+    
     return (
         /* style={{ height: '336px', width: '336px' }} */
         <div className='border-2 border-slate-300 rounded-lg p-5 relative'>

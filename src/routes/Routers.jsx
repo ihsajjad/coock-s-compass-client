@@ -6,6 +6,7 @@ import Recipes from "../pages/home/chef/recipes/Recipes";
 import Login from "../user/login/Login";
 import Register from "../user/register/Register";
 import PrivetRoute from "./privetRoute/PrivetRoute";
+import NotFound from "../shared/page_404/NotFound";
 
 
 
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main />,
+        errorElement: <NotFound />,
         children: [
             {
                 path: '/',
