@@ -7,6 +7,7 @@ import Login from "../user/login/Login";
 import Register from "../user/register/Register";
 import PrivetRoute from "./privetRoute/PrivetRoute";
 import NotFound from "../shared/page_404/NotFound";
+import Profile from "../pages/Profile/Profile";
 
 
 
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+            {
+                path: '/profile',
+                element: <PrivetRoute><Profile /></PrivetRoute>
             }
         ]
     }

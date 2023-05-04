@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
-import { ToastContext } from '../../providers/toast/ToastProvider';
+import { ToastContext } from '../../shared/toast/ToastProvider';
 
 
 const Register = () => {
@@ -53,7 +53,6 @@ const Register = () => {
             setNameAndPhoto(nameAndPhoto)
             .then(result => {})
             .catch(error => console.log(error.message))
-            console.log(createdUser);
         })
         .catch(error => {
             console.log(error.message);

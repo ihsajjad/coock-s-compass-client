@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { ToastContext } from '../../../../../providers/toast/ToastProvider';
+import { ToastContext } from '../../../../../shared/toast/ToastProvider';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 

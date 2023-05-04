@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
-import { ToastContext } from '../../providers/toast/ToastProvider';
+import { ToastContext } from '../../shared/toast/ToastProvider';
 
 
 

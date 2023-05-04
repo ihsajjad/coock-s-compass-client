@@ -38,7 +38,7 @@ const AuthProvider = ({children}) => {
 
     // Set name and photo in user data
     const setNameAndPhoto = (nameAndPhoto) => {
-        return updateProfile(auth.currentUser, nameAndPhoto);
+        return updateProfile(auth.currentUser, nameAndPhoto)
     }
 
     // change password

@@ -43,12 +43,16 @@ const Navbar = () => {
 
                         user
                             ?
-                            <><button onClick={handleLogOut}>Log Out</button>
-                                <div className="tooltip tooltip-bottom" data-tip={`${user?.displayName || 'Profile'}`}>
-                                    <img className="w-10 h-10"
-                                        style={{ padding: '0', borderRadius: '50%' }} src={`${user.photoURL || 'https://i.postimg.cc/d1bNpF8n/user-solid.png'}`}
-                                    />
-                                </div></>
+                            <>
+                                <button onClick={handleLogOut}>Log Out</button>
+                                <Link to='/profile'>
+                                    <div className="tooltip tooltip-bottom" data-tip={`${user?.displayName || 'Profile'}`}>
+                                        <img className="w-10 h-10"
+                                            style={{ padding: '0', borderRadius: '50%' }} src={`${user.photoURL || 'https://i.postimg.cc/d1bNpF8n/user-solid.png'}`}
+                                        />
+                                    </div>
+                                </Link>
+                            </>
 
                             : <>
                                 <NavLink
