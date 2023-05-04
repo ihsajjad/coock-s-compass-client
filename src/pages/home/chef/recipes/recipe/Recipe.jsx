@@ -34,7 +34,10 @@ const Recipe = ({ recipe }) => {
             <div className='w-full absolute px-8 py-4 bottom-0 right-0'>
                 <hr className='border border-amber-300 mb-3' />
                 <div className='flex items-center justify-between w-full'>
-                    <div className='flex items-center justify-center'><Rating style={{ maxWidth: '150px' }} value={rating} readOnly/> <span className='text-xl'>{rating}</span></div>
+                    <div className='flex items-center justify-center'>
+                        <Rating style={{ maxWidth: '150px' }} value={rating} readOnly/> 
+                        <span className='text-xl'>{rating}</span>
+                    </div>
                     <button onClick={handleAddToFavorite} className='custom-btn' 
                     disabled={isDisabled}
                     >Add to Favorite</button>
