@@ -4,7 +4,7 @@
 Cook's Compass is a Korean chef supplier website as well as it's sales Korean foods. 
 The website is created to submit as assignment 10 in Programming Hero.
 
-Live Preview : 
+Live Preview : https://cook-s-compass.web.app/
 
 ### Servers  API :- 
 - Chefs: https://cook-s-compass-server-ihsajjad.vercel.app/chefs
@@ -47,4 +47,5 @@ On the blog page, there has four questions and answers.
  - There has an email and password login system
  - Users also can login with Google and GitHub.
 
-
+#### Register: 
+- User can create account with email and password.
