@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(true);
     const { user, logOut } = useContext(AuthContext);
 
 
@@ -13,12 +15,19 @@ const Navbar = () => {
     }
     return (
 
-        <div className="navbar bg-amber-300 lg:px-20">
+        <div className="navbar bg-amber-300 lg:px-20 sticky top-0 z-10">
             <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">Cook's Compass</a>
+                <a className="text-2xl font-bold">Cook's Compass</a>
             </div>
-            <div className="flex-none">
-                <ul className="flex items-center justify-center space-x-5">
+            <div className="flex-none relative">
+                <div onClick={() => setIsOpen(!isOpen)} className='lg:invisible'>
+                    {
+                        isOpen
+                            ? <FaTimes />
+                            : <FaBars />
+                    }
+                </div>
+                <ul className={`flex lg:flex-row flex-col items-center justify-center text-center lg:space-x-5 md:static absolute ${isOpen ? 'close' : 'open'}`}>
                     <NavLink
                         to='/'
                         className={({ isActive, isPending }) =>

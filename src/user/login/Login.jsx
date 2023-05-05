@@ -109,7 +109,7 @@ const Login = () => {
                 <div className='text-center'>
                     <h3>Login with</h3>
                     <hr className='border border-slate-300 my-3 w-3/4 mx-auto' />
-                    <div className='flex items-center justify-center gap-5 mb-4 '>
+                    <div className='flex lg:flex-row flex-col items-center justify-center gap-5 mb-4 '>
                         <div onClick={handleGoogleLogin} className="custom-btn ">
                             <FaGoogle className='text-2xl mr-3'/><span> Google</span>
                         </div>
